@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="SimpleRowList" extends="RowList" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	<interface>
+		<field id="media" type="assocarray" />
+	</interface>
+	<script type="text/brightscript" >
+		<![CDATA[
+			function init()
+				    m.top.itemComponentName = "SimpleRowListItem"
+				    m.top.numRows = 2
+				    m.top.itemSize = [350 * 5 + 20 * 2, 213]
+				    m.top.rowHeights = [213]
+				    m.top.rowItemSize = [ [350, 213], [350, 213] ]
+				    m.top.itemSpacing = [ 0, 100 ]
+				    m.top.rowItemSpacing = [ [10, 0] ]
+					m.top.rowLabelOffset = [ [0, 30] ]
+				    m.top.rowFocusAnimationStyle = "floatingFocus"
+					m.top.showRowLabel = [true, true]
+					m.top.showRowCounter= [true, true]
+					m.top.rowLabelColor="0xffffffff"
+					m.top.visible = true
+					m.top.SetFocus(true)
+				    m.FetchTask = CreateObject("roSGNode","FetchTask")
+				    m.FetchTask.observefield("content","rowListContentChanged")
+				    m.FetchTask.observefield("mediaIndex","indexloaded")
+				    m.FetchTask.control="RUN"			    					
+			end function
+			
+			Sub rowListContentChanged(msg as Object)
+			    if type(msg) = "roSGNodeEvent" and msg.getField() = "content"
+			        m.top.content = msg.getData()
+			    end if
+			end Sub
+			
+			sub indexloaded(msg as Object)
+			    if type(msg) = "roSGNodeEvent" and msg.getField() = "mediaIndex"
+			        m.mediaIndex = msg.getData()
+			    end if
+			    handleDeepLink(m.global.deeplink)
+			end sub
+			
+			function handleDeepLink(deeplink as object)
+			  if validateDeepLink(deeplink)
+			    m.top.media = m.mediaIndex[deeplink.id]
+			  end if
+			end function
+						
+			function validateDeepLink(deeplink as Object) as Boolean
+			  mediatypes={movie:"movie",episode:"episode",season:"season",series:"series"}
+			  if deeplink <> Invalid
+			      if deeplink.type <> invalid then
+			        if mediatypes[deeplink.type]<> invalid
+			          if m.mediaIndex[deeplink.id] <> invalid
+			            if m.mediaIndex[deeplink.id].url <> invalid
+			              return true
+			            end if
+			          end if
+			        end if
+			      end if
+			  end if
+			  return false
+			end function
+		]]>
+	</script>
+</component>

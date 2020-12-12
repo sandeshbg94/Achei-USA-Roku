@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="DetailsScreen" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	<interface>
+		<field id="content" type="node" />
+	</interface>
+	<script type="text/brightscript" uri="pkg:/components/DetailsScreen.brs" />
+	<children>
+			<MaskGroup maskUri="pkg:/images/detailPageGradient.png" maskSize="[1900,1200]" maskOffset="[500,0]">
+   				<Poster id="DetailsBackgroundPoster" loadDisplayMode="scaleToFill" width="1900" height="1200" translation="[400,0]"/>
+    		</MaskGroup>
+    		<ScrollingLabel id="DetailsTitle" horizAlign = "center" vertAlign = "center" translation="[50,200]" maxWidth="1900">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Bold.ttf" size="40"/>
+	    	</ScrollingLabel>
+	    	<Label id="ReleaseDate" horizAlign = "center" vertAlign = "center" translation="[800,300]">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Regular.ttf" size="25"/>
+	    	</Label>
+	    	<Label id="StreamQuality" horizAlign = "center" vertAlign = "center" translation="[1100,300]">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Regular.ttf" size="25"/>
+	    	</Label>
+	    	<Label id="ContentDuration" horizAlign = "center" vertAlign = "center" translation="[800,350]">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Regular.ttf" size="25"/>
+	    	</Label>
+	    	<Label id="Description" width="1050" numLines="10" wrap="true" translation="[550,400]">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Regular.ttf" size="30"/>
+	    	</Label>
+	    	<ButtonGroup  id="UserActionButtons" layoutDirection="horiz" translation="[600,800]" textFont="pkg:/fonts/AvenirNextBold/AvenirNext-Bold.ttf"
+	    	 focusedTextFont="pkg:/fonts/AvenirNextBold/AvenirNext-Bold.ttf"/>
+	    	<Video id="DetailsScreenVideo" visible="false" />
+	</children>
+</component>

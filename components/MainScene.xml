@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+
+<component name="MainScene" extends="Scene" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	<!-- importing main handler -->
+    <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
+    
+    <children>
+    	<BusySpinner id="Loading" translation="[750,400]">
+    		<Poster uri="pkg:/images/Spin.png" />
+    	</BusySpinner>
+    	<Group id="HomeScreen">
+	    	<MaskGroup maskUri="pkg:/images/detailPageGradient.png" maskSize="[1500,700]" maskOffset="[500,0]">
+	   			<Poster id="BackgroundPoster" loadDisplayMode="scaleToFill" width="1500" height="700" translation="[400,0]"/>
+	    	</MaskGroup>
+	    	<Label id="SpecialsTitle" translation="[50, 150]" width="1000">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Bold.ttf" size="40"/>
+	    	</Label>
+	    	<Label id="ReleaseDate" translation="[50,250]">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Regular.ttf" size="20"/>
+	    	</Label>
+	    	<Label id="Quality" translation="[200,250]">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Bold.ttf" size="20"/>
+	    	</Label>
+	    	<Label id="Description" translation="[50,275]" width="650" wrap="true" numLines="3" lineSpacing="2">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Regular.ttf" size="25"/>
+	    	</Label>
+	    	<Label id="Genre" translation="[50,400]">
+	    		<Font role="font" uri="pkg:/fonts/AvenirNextBold/AvenirNext-Italic.ttf" size="20"/>
+	    	</Label>
+	    	<SimpleRowList id="CategoryList" translation="[50, 450]" />
+	    </Group>
+	   	<DetailsScreen id="DetailsScreen" visible="false" />
+	   	<Video id ="DeepLinkVideoNode" visible="false" />
+    </children>
+</component>
