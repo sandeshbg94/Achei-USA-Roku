@@ -7,7 +7,7 @@
     <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
     
     <children>
-    	<BusySpinner id="Loading" translation="[750,400]">
+    	<BusySpinner id="Loading" translation="[850,400]">
     		<Poster uri="pkg:/images/Spin.png" />
     	</BusySpinner>
     	<Group id="HomeScreen">
