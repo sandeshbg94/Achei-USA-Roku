@@ -3,7 +3,7 @@
 sub init()
     m.scene = m.top.getScene()
     m.Loader = m.top.findNode("Loading")
-    m.Loader.control = "start"
+    m.Loader.poster.uri = "pkg:/images/Spin.png"
     m.HomeScreen = m.top.findNode("HomeScreen")
     m.CategoryList = m.top.findNode("CategoryList")
     m.TitleNode = m.top.findNode("SpecialsTitle")
@@ -22,7 +22,6 @@ End sub
 
 sub onRowItemFocused(msg as Object)
     if type(msg) = "roSGNodeEvent" and msg.getField() = "rowItemFocused"
-        m.Loader.control = "stop"
         m.Loader.visible = false
         FocusedContentId = msg.getData()
         FocusedContent = m.CategoryList.content.getChild(FocusedContentId[0]).getChild(FocusedContentId[1])

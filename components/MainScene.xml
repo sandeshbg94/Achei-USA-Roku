@@ -7,9 +7,7 @@
     <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
     
     <children>
-    	<BusySpinner id="Loading" translation="[850,400]">
-    		<Poster uri="pkg:/images/Spin.png" />
-    	</BusySpinner>
+    	<BusySpinner id="Loading" translation="[850,400]" spinInterval="3" />
     	<Group id="HomeScreen">
 	    	<MaskGroup maskUri="pkg:/images/detailPageGradient.png" maskSize="[1500,700]" maskOffset="[500,0]">
 	   			<Poster id="BackgroundPoster" loadDisplayMode="scaleToFill" width="1500" height="700" translation="[400,0]"/>
