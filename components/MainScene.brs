@@ -59,6 +59,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         else if m.VideoNode.visible
             m.VideoNode.control = "stop"
             m.scene.backExitsScene = true
+            m.HomeScreen.visible = true
             m.CategoryList.setFocus(true)
             m.VideoNode.visible = false
             result = true
@@ -71,6 +72,13 @@ end function
             
 function playVideo(msg as Object)
     if type(msg) = "roSGNodeEvent" and msg.getField() = "media"
+        if m.DetailsScreen.visible
+            'reset video player before detaching the screen
+            DetailsScreenPlayer = m.DetailsScreen.findNode("DetailsScreenVideo")
+            DetailsScreenPlayer.control = "STOP"
+            DetailsScreenPlayer.visible = false
+            m.DetailsScreen.visible = false
+        end if
         media = msg.getData()
         videocontent = createObject("RoSGNode","ContentNode")
         videocontent.title = media.title

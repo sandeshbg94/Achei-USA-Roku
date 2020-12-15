@@ -23,7 +23,11 @@
 				    m.FetchTask = CreateObject("roSGNode","FetchTask")
 				    m.FetchTask.observefield("content","rowListContentChanged")
 				    m.FetchTask.observefield("mediaIndex","indexloaded")
-				    m.FetchTask.control="RUN"			    					
+				    m.FetchTask.control="RUN"
+
+					m.ListenTask = CreateObject("roSGNode","ListenerTask")
+					m.ListenTask.observeField("inputData","handleInputEvent")
+					m.ListenTask.control = "RUN"
 			end function
 			
 			Sub rowListContentChanged(msg as Object)
@@ -39,6 +43,15 @@
 			    handleDeepLink(m.global.deeplink)
 			end sub
 			
+			sub handleInputEvent(msg)
+				if type(msg) = "roSGNodeEvent" and msg.getField() = "inputData"
+					deeplink = msg.getData()
+					if deeplink <> invalid
+						handleDeepLink(deeplink)
+					end if
+				end if
+			end sub
+
 			function handleDeepLink(deeplink as object)
 			  if validateDeepLink(deeplink)
 			    m.top.media = m.mediaIndex[deeplink.id]
